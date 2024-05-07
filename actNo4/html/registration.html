@@ -10,16 +10,13 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
       crossorigin="anonymous"
     />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <div class="container">
       <button id="back-button"><i class="fas fa-arrow-left"></i></button>
       <h2>User Registration</h2>
-      <form
-        action="../php/register.php"
-        method="POST"
-        onsubmit="return validateForm()"
-      >
+      <form id="registration-form" action="../php/register.php" method="POST">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required />
         <br />
@@ -44,16 +41,16 @@
 
     <script>
       function validateForm() {
-        var password = document.getElementById("password").value;
-        var confirm_password = document.getElementById("confirm-password");
+        var password = $("#password").val();
+        var confirm_password = $("#confirm-password").val();
 
-        if (password !== confirm_password.value) {
-          confirm_password.value = "";
-          confirm_password.placeholder = "Passwords do not match.";
-          confirm_password.style.borderColor = "red";
-          confirm_password.classList.add("shake");
+        if (password !== confirm_password) {
+          $("#confirm-password").val("");
+          $("#confirm-password").attr("placeholder", "Passwords do not match.");
+          $("#confirm-password").css("borderColor", "red");
+          $("#confirm-password").addClass("shake");
           setTimeout(function () {
-            confirm_password.classList.remove("shake");
+            $("#confirm-password").removeClass("shake");
           }, 500);
           return false;
         }
@@ -61,20 +58,41 @@
       }
 
       function checkPasswordMatch() {
-        var password = document.getElementById("password").value;
-        var confirm_password =
-          document.getElementById("confirm-password").value;
+        var password = $("#password").val();
+        var confirm_password = $("#confirm-password").val();
 
         if (password === confirm_password) {
-          document.getElementById("confirm-password").placeholder = "";
-          document.getElementById("confirm-password").style.borderColor =
-            "#2ecc71";
+          $("#confirm-password").attr("placeholder", "");
+          $("#confirm-password").css("borderColor", "#2ecc71");
         }
       }
 
-      document.getElementById("back-button").onclick = function () {
-        window.location.href = "logIn.html";
-      };
+      $(document).ready(function () {
+        $("#registration-form").submit(function (e) {
+          e.preventDefault(); // Prevent form submission
+
+          if (validateForm()) {
+            $.ajax({
+              type: "POST",
+              url: $(this).attr("action"),
+              data: $(this).serialize(),
+              success: function (response) {
+                // Handle success response
+                console.log("Registration successful!");
+                window.location.href = "logIn.html";
+              },
+              error: function (xhr, status, error) {
+                // Handle error response
+                console.error("Error occurred during registration:", error);
+              },
+            });
+          }
+        });
+
+        $("#back-button").click(function () {
+          window.location.href = "logIn.html";
+        });
+      });
     </script>
   </body>
 </html>

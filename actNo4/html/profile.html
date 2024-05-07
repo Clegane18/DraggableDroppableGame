@@ -152,43 +152,33 @@
           }
         };
 
-        document.getElementById("edit-profile-form").onsubmit = function (
-          event
-        ) {
-          event.preventDefault();
-          var newUsername = document.getElementById("new-username").value;
-          var newEmail = document.getElementById("new-email").value;
-          var newPassword = document.getElementById("new-password").value;
+        $("#edit-profile-form").submit(function (event) {
+          event.preventDefault(); // Prevent default form submission
 
-          var updateXhr = new XMLHttpRequest();
-          updateXhr.onreadystatechange = function () {
-            if (updateXhr.readyState === XMLHttpRequest.DONE) {
-              if (updateXhr.status === 200) {
-                console.log("User information updated successfully.");
-                window.location.reload();
-              } else {
-                console.error(
-                  "Failed to update user information:",
-                  updateXhr.status
-                );
-              }
-            }
-          };
-          updateXhr.open("POST", "../php/updateUserProfile.php", true);
-          updateXhr.setRequestHeader(
-            "Content-Type",
-            "application/json;charset=UTF-8"
-          );
-          updateXhr.send(
-            JSON.stringify({
+          var newUsername = $("#new-username").val();
+          var newEmail = $("#new-email").val();
+          var newPassword = $("#new-password").val();
+
+          $.ajax({
+            type: "POST",
+            url: "../php/updateUserProfile.php",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify({
               newUsername: newUsername,
               newEmail: newEmail,
               newPassword: newPassword,
-            })
-          );
+            }),
+            success: function (response) {
+              console.log("User information updated successfully.");
+              window.location.reload();
+            },
+            error: function (xhr, status, error) {
+              console.error("Failed to update user information:", error);
+            },
+          });
 
-          editProfileModal.style.display = "none";
-        };
+          $("#edit-profile-modal").hide(); // Hide the modal after submission
+        });
       });
     </script>
   </body>

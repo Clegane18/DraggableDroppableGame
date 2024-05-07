@@ -8,63 +8,32 @@
     <longerTimeLeft>14</longerTimeLeft>
   </user>
   <user>
+    <username>testing</username>
+    <email>test10@gmail.com</email>
+    <password>test1</password>
+    <currentLevel>Level 1</currentLevel>
+    <longerTimeLeft>14</longerTimeLeft>
+  </user>
+  <user>
     <username>test2</username>
     <email>test@gmail.com</email>
-    <password>test</password>
-    <currentLevel>Level 2</currentLevel>
+    <password>test2</password>
+    <currentLevel>Level 1</currentLevel>
     <longerTimeLeft>12</longerTimeLeft>
   </user>
   <user>
     <username>test3</username>
-    <email>test@gmail.com</email>
-    <password>test</password>
-    <currentLevel>Level 2</currentLevel>
-    <longerTimeLeft>14</longerTimeLeft>
-  </user>
-  <user>
-    <username>test3</username>
-    <email>test@gmail.com</email>
-    <password>test</password>
+    <email>test3@gmail.com</email>
+    <password>test3</password>
   </user>
   <user>
     <username>test4</username>
-    <email>test@gmail.com</email>
-    <password>test</password>
-    <currentLevel>Level 2</currentLevel>
-    <longerTimeLeft>13</longerTimeLeft>
+    <email>test4@gmail.com</email>
+    <password>test4</password>
   </user>
   <user>
-    <username>test5</username>
-    <email>test@gmail.com</email>
-    <password>test</password>
-    <currentLevel>Level 2</currentLevel>
-    <longerTimeLeft>10</longerTimeLeft>
+    <username>pakutog</username>
+    <email>test5@gmail.com</email>
+    <password>test5</password>
   </user>
-  <user>
-    <username>test6</username>
-    <email>test@gmail.com</email>
-    <password>test</password>
-    <currentLevel>Level 2</currentLevel>
-    <longerTimeLeft>14</longerTimeLeft>
-  </user>
-  <user>
-    <username>test7</username>
-    <email>test@gmail.com</email>
-    <password>test</password>
-    <currentLevel>Level 1</currentLevel>
-    <longerTimeLeft>13</longerTimeLeft>
-    <longestLevel>Level 1</longestLevel>
-  </user>
-  <user>
-    <username>test8</username>
-    <email>test@gmail.com</email>
-    <password>test</password>
-    <currentLevel>Level 1</currentLevel>
-    <longerTimeLeft>11</longerTimeLeft>
-  </user>
-  <user>
-    <username>gabriel</username>
-    <email>gabo@gmail.com</email>
-    <password>test</password>
-  <currentLevel>Level 1</currentLevel><longerTimeLeft>14</longerTimeLeft></user>
 </users>

@@ -77,7 +77,7 @@ $(document).ready(function () {
       startButton.removeClass("hide");
       startButton.off("click").on("click", function () {
         updateProgress("Level 1", timeLeft);
-        window.location.href = "index2.php";
+        window.location.href = "index2.html";
       });
     }
   };

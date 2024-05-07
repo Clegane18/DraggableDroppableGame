@@ -38,7 +38,7 @@ $(document).ready(function () {
     startButton.text("Proceed to Level 5");
     startButton.off("click").on("click", function () {
       updateProgress("Level 4", timeLeft);
-      window.location.href = "index5.php";
+      window.location.href = "index5.html";
     });
   };
 
