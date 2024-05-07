@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <link rel="stylesheet" href="../css/profile.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <button id="back-button"><i class="fas fa-arrow-left"></i></button>
+      <h2>User Profile</h2>
+      <div id="profile-section">
+        <div class="profile-info">
+          <p>
+            <strong>Username:</strong>
+            <span id="username" class="profile-info-value">Loading...</span>
+          </p>
+          <p>
+            <strong>Email:</strong>
+            <span id="email" class="profile-info-value">Loading...</span>
+          </p>
+          <p>
+            <strong>Password:</strong>
+            <span id="password" class="profile-info-value">••••••••</span>
+            <button id="show-password-btn" onclick="togglePasswordVisibility()">
+              <i id="password-icon" class="fas fa-eye"></i>
+              <span id="password-btn-text">Show</span>
+            </button>
+          </p>
+        </div>
+        <button id="edit-profile-btn">Edit Information</button>
+      </div>
+      <div id="statistics-section">
+        <h3>User Statistics</h3>
+        <div class="statistic-container">
+          <p>
+            <strong>Highest Level Reached:</strong>
+            <span id="user-level">Loading...</span>
+          </p>
+        </div>
+        <div class="statistic-container">
+          <p>
+            <strong>Longest Time Left:</strong>
+            <span id="user-time">Loading...</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div id="edit-profile-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Edit Profile Information</h2>
+        <form id="edit-profile-form" novalidate>
+          <label for="new-username">New Username:</label>
+          <input
+            type="text"
+            id="new-username"
+            name="new-username"
+            class="login-input"
+            required
+          /><br />
+          <label for="new-email">New Email:</label>
+          <input
+            type="email"
+            id="new-email"
+            name="new-email"
+            class="login-input"
+            required
+          /><br />
+          <label for="new-password">New Password:</label>
+          <input
+            type="password"
+            id="new-password"
+            name="new-password"
+            class="login-input"
+            required
+          /><br />
+          <input type="submit" value="Update" class="login-button" />
+        </form>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+      document
+        .getElementById("back-button")
+        .addEventListener("click", function () {
+          window.location.href = "homepage.html";
+        });
+
+      var userData;
+
+      function togglePasswordVisibility() {
+        var passwordSpan = document.getElementById("password");
+        var showPasswordBtn = document.getElementById("show-password-btn");
+        var passwordIcon = document.getElementById("password-icon");
+        if (passwordSpan.textContent === "••••••••") {
+          passwordSpan.textContent = userData.password;
+          showPasswordBtn.textContent = "Hide";
+          passwordIcon.classList.remove("fa-eye");
+          passwordIcon.classList.add("fa-eye-slash");
+        } else {
+          passwordSpan.textContent = "••••••••";
+          showPasswordBtn.textContent = "Show";
+          passwordIcon.classList.remove("fa-eye-slash");
+          passwordIcon.classList.add("fa-eye");
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+              userData = JSON.parse(xhr.responseText);
+              document.getElementById("username").textContent =
+                userData.username;
+              document.getElementById("email").textContent = userData.email;
+              document.getElementById("password").textContent = "••••••••";
+              document.getElementById("user-level").textContent =
+                userData.currentLevel;
+              document.getElementById("user-time").textContent =
+                userData.longerTimeLeft;
+            } else {
+              console.error("Failed to fetch user profile:", xhr.status);
+            }
+          }
+        };
+        xhr.open("GET", "../php/getUserProfile.php", true);
+        xhr.send();
+
+        var editProfileModal = document.getElementById("edit-profile-modal");
+
+        document.getElementById("edit-profile-btn").onclick = function () {
+          editProfileModal.style.display = "block";
+        };
+
+        document.querySelector(".modal-content .close").onclick = function () {
+          editProfileModal.style.display = "none";
+        };
+
+        window.onclick = function (event) {
+          if (event.target == editProfileModal) {
+            editProfileModal.style.display = "none";
+          }
+        };
+
+        document.getElementById("edit-profile-form").onsubmit = function (
+          event
+        ) {
+          event.preventDefault();
+          var newUsername = document.getElementById("new-username").value;
+          var newEmail = document.getElementById("new-email").value;
+          var newPassword = document.getElementById("new-password").value;
+
+          var updateXhr = new XMLHttpRequest();
+          updateXhr.onreadystatechange = function () {
+            if (updateXhr.readyState === XMLHttpRequest.DONE) {
+              if (updateXhr.status === 200) {
+                console.log("User information updated successfully.");
+                window.location.reload();
+              } else {
+                console.error(
+                  "Failed to update user information:",
+                  updateXhr.status
+                );
+              }
+            }
+          };
+          updateXhr.open("POST", "../php/updateUserProfile.php", true);
+          updateXhr.setRequestHeader(
+            "Content-Type",
+            "application/json;charset=UTF-8"
+          );
+          updateXhr.send(
+            JSON.stringify({
+              newUsername: newUsername,
+              newEmail: newEmail,
+              newPassword: newPassword,
+            })
+          );
+
+          editProfileModal.style.display = "none";
+        };
+      });
+    </script>
+  </body>
+</html>

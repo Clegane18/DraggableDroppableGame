@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Know Your Place</title>
+    <link rel="stylesheet" href="aboutthegamestyle.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      crossorigin="anonymous"
+    />
+</head>
+<body>
+    <div class="container">
+        <button id="back-button"><i class="fas fa-arrow-left"></i></button>
+        <header>
+            <div class="green-container">
+                <h1>About the Game</h1>
+            </div>
+        </header>
+        <section>
+            <div class="caption">
+                <p>Step into an epic adventure with a web-based game that's all about countries! Get ready to flex your brainpower as you race against the clock to sort images of flags, famous places, and tasty foods into the right categories. With each level, the game cranks up the challenge, throwing more images and trickier puzzles your way.</p>
+                <p>But fear not! Every attempt is a chance to learn and grow. By playing, you'll become a pro at recognizing flags, landmarks, and cuisines from around the world. It's like traveling without leaving your seat!</p>
+                <p>This game isn't just fun—it's an interactive journey that boosts your memory and teaches you cool stuff about different countries. So, what are you waiting for? Dive in and get ready for a globe-trotting adventure like no other!</p>
+            </div>
+        </section>
+        <section>
+            <div class="green-container">
+                <h2>Meet the Developers</h2>
+            </div>
+        </section>
+        <section class="developer-section">
+            <div class="developer">
+                <div class="developer-image">
+                    <img src="aboutthegameassets/picture1.jpg" alt="Developer 1">
+                </div>
+                <div class="developer-caption">
+                    <p>John Ross Rivera</p>
+                </div>
+            </div>
+            <div class="developer">
+                <div class="developer-image">
+                    <img src="aboutthegameassets/picture2.jpg" alt="Developer 2">
+                </div>
+                <div class="developer-caption">
+                    <p>Jean Magritte Dela Cruz</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        document.getElementById("back-button").addEventListener("click", function () {
+          window.location.href = "../html/homepage.html";
+        });
+    </script>
+</body>
+</html>

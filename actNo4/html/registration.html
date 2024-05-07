@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Registration</title>
+    <link rel="stylesheet" href="../css/registration.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <button id="back-button"><i class="fas fa-arrow-left"></i></button>
+      <h2>User Registration</h2>
+      <form
+        action="../php/register.php"
+        method="POST"
+        onsubmit="return validateForm()"
+      >
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+        <br />
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+        <br />
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+        <br />
+        <label for="confirm-password">Confirm Password:</label>
+        <input
+          type="password"
+          id="confirm-password"
+          name="confirm-password"
+          required
+          oninput="checkPasswordMatch()"
+        />
+        <br />
+        <input type="submit" value="Register" />
+      </form>
+    </div>
+
+    <script>
+      function validateForm() {
+        var password = document.getElementById("password").value;
+        var confirm_password = document.getElementById("confirm-password");
+
+        if (password !== confirm_password.value) {
+          confirm_password.value = "";
+          confirm_password.placeholder = "Passwords do not match.";
+          confirm_password.style.borderColor = "red";
+          confirm_password.classList.add("shake");
+          setTimeout(function () {
+            confirm_password.classList.remove("shake");
+          }, 500);
+          return false;
+        }
+        return true;
+      }
+
+      function checkPasswordMatch() {
+        var password = document.getElementById("password").value;
+        var confirm_password =
+          document.getElementById("confirm-password").value;
+
+        if (password === confirm_password) {
+          document.getElementById("confirm-password").placeholder = "";
+          document.getElementById("confirm-password").style.borderColor =
+            "#2ecc71";
+        }
+      }
+
+      document.getElementById("back-button").onclick = function () {
+        window.location.href = "logIn.html";
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Home Screen</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/homepage.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Welcome to Know your place</h2>
+      <ul id="navigation">
+        <li class="nav-item" id="profile">View Profile</li>
+        <li class="nav-item" id="play">Play Game</li>
+        <li class="nav-item" id="how-to-play">How to Play</li>
+        <li class="nav-item" id="about">About the Game</li>
+        <li class="nav-item" id="logout">
+          <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </li>
+      </ul>
+      <div id="statistics">
+        <h3><span id="username"></span>'s Statistics</h3>
+        <p>Current Level: <span id="level">Loading...</span></p>
+      </div>
+    </div>
+    <div
+      class="confirmation-dialog"
+      id="confirmationDialog"
+      style="display: none"
+    >
+      <div class="confirmation-box">
+        <h3>Are you sure you want to log out?</h3>
+        <div class="confirmation-buttons">
+          <button class="cancel" onclick="closeConfirmationDialog()">
+            Cancel
+          </button>
+          <button class="confirm" onclick="logout()">Logout</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      function openConfirmationDialog() {
+        $("#confirmationDialog").fadeIn();
+      }
+      function closeConfirmationDialog() {
+        $("#confirmationDialog").fadeOut();
+      }
+      function logout() {
+        $.ajax({
+          type: "POST",
+          url: "../php/logout.php",
+          success: function (response) {
+            window.location.href = "logIn.html";
+          },
+        });
+      }
+      $(document).ready(function () {
+        $.ajax({
+          type: "GET",
+          url: "../php/getCurrentUserLevelForHomepage.php",
+          success: function (response) {
+            $("#level").text(response.currentLevel);
+          },
+          error: function () {
+            $("#level").text("N/A");
+          },
+        });
+        $.ajax({
+          type: "GET",
+          url: "../php/getUsernameForTheHomepage.php",
+          success: function (response) {
+            $("#username").text(response.username);
+          },
+          error: function () {
+            $("#username").text("Unknown");
+          },
+        });
+        $("#navigation").sortable({
+          tolerance: "intersect",
+          cursor: "move",
+          cursorAt: { top: 5, left: 5 },
+          delay: 100,
+          revert: true,
+          revertDuration: 200,
+          opacity: 0.7,
+          helper: "clone",
+          scroll: true,
+          scrollSensitivity: 50,
+          scrollSpeed: 10,
+          zIndex: 10000,
+        });
+        $("#profile").click(function () {
+          window.location.href = "profile.html";
+        });
+        $("#play").click(function () {
+          window.location.href = "../knowYourPlace/index.php";
+        });
+        $("#how-to-play").click(function () {
+          window.location.href = "../HowToPlay/howtoplay.php";
+        });
+        $("#about").click(function () {
+          window.location.href = "../HowToPlay/aboutthegame.php";
+        });
+        $("#logout a").click(function (e) {
+          e.preventDefault();
+          openConfirmationDialog();
+        });
+      });
+    </script>
+  </body>
+</html>

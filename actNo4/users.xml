@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<users>
+  <user>
+    <username>updated</username>
+    <email>pogiako</email>
+    <password>updated</password>
+    <currentLevel>Level 4</currentLevel>
+    <longerTimeLeft>14</longerTimeLeft>
+  </user>
+  <user>
+    <username>test2</username>
+    <email>test@gmail.com</email>
+    <password>test</password>
+    <currentLevel>Level 2</currentLevel>
+    <longerTimeLeft>12</longerTimeLeft>
+  </user>
+  <user>
+    <username>test3</username>
+    <email>test@gmail.com</email>
+    <password>test</password>
+    <currentLevel>Level 2</currentLevel>
+    <longerTimeLeft>14</longerTimeLeft>
+  </user>
+  <user>
+    <username>test3</username>
+    <email>test@gmail.com</email>
+    <password>test</password>
+  </user>
+  <user>
+    <username>test4</username>
+    <email>test@gmail.com</email>
+    <password>test</password>
+    <currentLevel>Level 2</currentLevel>
+    <longerTimeLeft>13</longerTimeLeft>
+  </user>
+  <user>
+    <username>test5</username>
+    <email>test@gmail.com</email>
+    <password>test</password>
+    <currentLevel>Level 2</currentLevel>
+    <longerTimeLeft>10</longerTimeLeft>
+  </user>
+  <user>
+    <username>test6</username>
+    <email>test@gmail.com</email>
+    <password>test</password>
+    <currentLevel>Level 2</currentLevel>
+    <longerTimeLeft>14</longerTimeLeft>
+  </user>
+  <user>
+    <username>test7</username>
+    <email>test@gmail.com</email>
+    <password>test</password>
+    <currentLevel>Level 1</currentLevel>
+    <longerTimeLeft>13</longerTimeLeft>
+    <longestLevel>Level 1</longestLevel>
+  </user>
+  <user>
+    <username>test8</username>
+    <email>test@gmail.com</email>
+    <password>test</password>
+    <currentLevel>Level 1</currentLevel>
+    <longerTimeLeft>11</longerTimeLeft>
+  </user>
+  <user>
+    <username>gabriel</username>
+    <email>gabo@gmail.com</email>
+    <password>test</password>
+  <currentLevel>Level 1</currentLevel><longerTimeLeft>14</longerTimeLeft></user>
+</users>
